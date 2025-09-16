@@ -1,84 +1,154 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LOGO from '../assets/LOGO.png';
-import {  CircleUserRound ,Logs } from 'lucide-react';
-
+import { CircleUserRound, X } from 'lucide-react';
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div>
-       <header className="relative z-10 flex items-center justify-between px-8 py-4 ">
-  {/* Logo shifted further inside (custom ml-59) */}
-  <div className="flex items-center ml-[90px]">
-  <img src={LOGO} alt="Logo" className="w-[132px] h-auto object-contain" />
-</div> 
+      <header className="relative z-10 flex items-center justify-between px-2 sm:px-4 md:px-8 py-4">
+        {/* Logo shifted further inside (custom ml-59) */}
+        <div className="flex items-center ml-0 sm:ml-4 md:ml-[90px]">
+          <img src={LOGO} alt="Logo" className="w-[80px] sm:w-[100px] md:w-[132px] h-auto object-contain" />
+        </div>
 
+        {/* Desktop Navigation - Hidden on mobile */}
+        <nav className="hidden md:flex items-center gap-2 sm:gap-4 md:gap-6 mr-0 sm:mr-4 md:mr-[60px]">
+          <button className="text-white text-[10px] sm:text-xs hover:text-blue-200 transition-colors whitespace-nowrap">
+            Pay Rent
+          </button>
+          <button className="text-white text-[10px] sm:text-xs hover:text-blue-200 transition-colors whitespace-nowrap">
+            Rent Agreement
+          </button>
 
-  {/* Nav on Right (more margin) */}
-<nav className="flex items-center gap-6 mr-[60px]">
-  <button className="text-white text-xs hover:text-blue-200 transition-colors">
-    Pay Rent
-  </button>
-  <button className="text-white text-xs hover:text-blue-200 transition-colors">
-    Rent Agreement
-  </button>
-
-  <button className="flex items-center text-white text-xs hover:text-blue-200 transition-colors">
-    <svg
+          <button className="flex items-center text-white text-[10px] sm:text-xs hover:text-blue-200 transition-colors whitespace-nowrap">
+             <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 336"
       className="w-8 h-8 mr-1 fill-current"
     >
      <path d="M339.932739,276.973419 C339.897766,292.362640 341.126801,290.186279 327.118317,290.205536 C275.472168,290.276581 223.825851,290.232025 172.179596,290.229645 C163.619614,290.229248 163.614426,290.226318 163.614838,281.444244 C163.615707,262.951569 163.754776,244.457321 163.536545,225.967255 C163.480118,221.186630 164.996811,219.517654 169.809967,219.650482 C180.131378,219.935318 190.466202,219.709534 200.795242,219.753830 C205.983353,219.776062 208.122711,221.309814 210.578522,226.517563 C208.937790,228.486389 206.639969,227.913864 204.568710,227.920242 C194.906158,227.949966 185.240585,228.008026 175.582123,227.789444 C172.330383,227.715851 171.106613,228.729752 171.126266,232.006027 C171.219223,247.499283 171.218277,262.993683 171.123993,278.486938 C171.103531,281.852997 172.628860,282.711212 175.705185,282.707947 C226.185165,282.654541 276.665314,282.635559 327.145111,282.742920 C331.115540,282.751373 331.835693,281.048981 331.808655,277.623535 C331.692963,262.963593 331.571411,248.298264 331.873108,233.643570 C331.972412,228.819290 330.059021,227.567627 325.748901,227.669083 C316.757172,227.880707 307.759705,227.870224 298.764435,227.894424 C296.646729,227.900131 294.402618,228.310226 292.038300,226.251953 C294.183716,222.928696 296.330597,219.781647 300.951935,219.765793 C312.280609,219.726944 323.610535,219.842789 334.937866,219.714279 C340.044037,219.656357 339.903412,223.102158 339.910461,226.500488 C339.945129,243.159927 339.930328,259.819458 339.932739,276.973419 z" /> <path d="M255.336761,166.000061 C255.336990,185.935638 255.336990,205.371216 255.336990,224.846283 C258.193390,225.153839 259.035767,223.229340 260.227600,222.039413 C271.542572,210.741974 282.777405,199.364212 294.105927,188.080490 C295.643188,186.549316 297.108887,184.191910 299.989990,186.049805 C303.301239,188.185104 303.440430,190.304733 300.095276,193.674133 C289.415558,204.431229 278.675171,215.128052 267.957825,225.847794 C263.717987,230.088608 259.403229,234.257858 255.265045,238.595612 C252.840134,241.137466 250.643280,241.477036 248.070923,238.896912 C232.782455,223.562378 217.455551,208.266144 202.174652,192.924088 C200.428055,191.170486 199.241348,189.329407 201.660950,186.965012 C204.260773,184.424500 206.272385,185.244522 208.450943,187.448166 C219.809113,198.937256 231.187622,210.406372 242.603714,221.837830 C243.953217,223.189148 245.020645,224.968216 247.658920,225.716812 C247.658920,222.685455 247.658859,219.907364 247.658936,217.129272 C247.659912,180.815659 247.647919,144.502029 247.695953,108.188469 C247.698669,106.132515 246.834030,103.645943 249.028625,102.193962 C250.447067,101.255493 252.290527,101.350479 253.842102,102.104828 C255.717804,103.016769 255.309647,104.934006 255.312256,106.532570 C255.344421,126.188362 255.335114,145.844223 255.336761,166.000061 z" /> <path d="M307.453979,266.900055 C296.127350,270.386902 287.470032,264.158813 288.544281,253.726151 C289.179840,247.553635 292.875122,243.489990 299.115082,242.101669 C304.167023,240.977692 309.910553,243.571259 312.751862,248.259598 C315.790161,253.272873 315.256287,259.619659 311.297607,263.961761 C310.311310,265.043549 308.986267,265.816528 307.453979,266.900055 M306.025757,252.488815 C304.299255,249.649414 301.672577,249.652237 299.039459,250.596161 C296.931641,251.351776 296.275452,253.288086 296.325745,255.452164 C296.383636,257.943604 297.790985,259.477448 299.978973,260.262024 C303.928833,261.678375 306.785309,258.459503 306.025757,252.488815 z" /> </svg>
-    Download App
-  </button>
+   
+            Download App
+          </button>
 
-  <button className="flex items-center text-white text-xs hover:text-blue-200 transition-colors">
-    <CircleUserRound className="w-4 h-4 mr-1" />
-    Login
-  </button>
+          <button className="flex items-center text-white text-[10px] sm:text-xs hover:text-blue-200 transition-colors whitespace-nowrap">
+            <CircleUserRound className="w-3 h-3 sm:w-4 h-4 mr-1" />
+            Login
+          </button>
 
-  <svg
-    className="w-5 h-5 ml-3"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    stroke="white"
-    strokeWidth="1.4"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M20 15.5C18.8 15.5 17.5 15.3 16.4 14.9C16.3 14.9 16.2 14.9 16.1 14.9C15.8 14.9 15.6 15 15.4 15.2L13.2 17.4C10.4 15.9 8 13.6 6.6 10.8L8.8 8.6C9.1 8.3 9.2 7.9 9 7.6C8.7 6.5 8.5 5.2 8.5 4C8.5 3.5 8 3 7.5 3H4C3.5 3 3 3.5 3 4C3 13.4 10.6 21 20 21C20.5 21 21 20.5 21 20V16.5C21 16 20.5 15.5 20 15.5Z"
-    />
-  </svg>
+          <svg
+            className="w-4 h-4 sm:w-5 h-5 ml-3"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="white"
+            strokeWidth="1.4"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M20 15.5C18.8 15.5 17.5 15.3 16.4 14.9C16.3 14.9 16.2 14.9 16.1 14.9C15.8 14.9 15.6 15 15.4 15.2L13.2 17.4C10.4 15.9 8 13.6 6.6 10.8L8.8 8.6C9.1 8.3 9.2 7.9 9 7.6C8.7 6.5 8.5 5.2 8.5 4C8.5 3.5 8 3 7.5 3H4C3.5 3 3 3.5 3 4C3 13.4 10.6 21 20 21C20.5 21 21 20.5 21 20V16.5C21 16 20.5 15.5 20 15.5Z"
+            />
+          </svg>
 
-  <button className="flex items-center bg-transparent border border-white text-white px-5 py-2.5 rounded-full hover:bg-white hover:text-blue-600 transition-colors text-xs">
-    Post Property
-    <span className="bg-[#d2f1ff] text-black text-[10px] px-1 py-0.3 rounded ml-2">
-      FREE
-    </span>
-  </button>
+          <button className="flex items-center bg-transparent border border-white text-white px-3 py-1.5 sm:px-5 py-2.5 rounded-full hover:bg-white hover:text-blue-600 transition-colors text-[10px] sm:text-xs whitespace-nowrap">
+            Post Property
+            <span className="bg-[#d2f1ff] text-black text-[8px] sm:text-[10px] px-1 py-0.3 rounded ml-2">
+              FREE
+            </span>
+          </button>
+           <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1="4" y1="9" x2="20" y2="9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                <line x1="10" y1="15" x2="20" y2="15" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+        </nav>
 
-<div className=" m">
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
+        {/* Mobile Menu Icon - Only visible on mobile */}
+        <div className="md:hidden mr-2">
+          <button onClick={toggleMenu} className="text-white">
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line x1="4" y1="9" x2="20" y2="9" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                <line x1="10" y1="15" x2="20" y2="15" stroke="white" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Menu - Slide down when menu is open */}
+        {isMenuOpen && (
+          <div className="absolute top-full left-0 right-0 bg-black bg-opacity-95 md:hidden z-20">
+            <nav className="flex flex-col items-center gap-4 py-6 px-4">
+              <button className="text-white text-sm hover:text-blue-200 transition-colors">
+                Pay Rent
+              </button>
+              <button className="text-white text-sm hover:text-blue-200 transition-colors">
+                Rent Agreement
+              </button>
+
+              <button className="flex items-center text-white text-sm hover:text-blue-200 transition-colors">
+                 <svg
       xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 448 336"
+      className="w-8 h-8 mr-1 fill-current"
     >
-      {/* Upper full line */}
-      <line x1="4" y1="9" x2="20" y2="9" stroke="white" strokeWidth="2" strokeLinecap="round" />
-      
-      {/* Lower shorter line aligned right */}
-      <line x1="10" y1="15" x2="20" y2="15" stroke="white" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  </div>
-</nav>
+     <path d="M339.932739,276.973419 C339.897766,292.362640 341.126801,290.186279 327.118317,290.205536 C275.472168,290.276581 223.825851,290.232025 172.179596,290.229645 C163.619614,290.229248 163.614426,290.226318 163.614838,281.444244 C163.615707,262.951569 163.754776,244.457321 163.536545,225.967255 C163.480118,221.186630 164.996811,219.517654 169.809967,219.650482 C180.131378,219.935318 190.466202,219.709534 200.795242,219.753830 C205.983353,219.776062 208.122711,221.309814 210.578522,226.517563 C208.937790,228.486389 206.639969,227.913864 204.568710,227.920242 C194.906158,227.949966 185.240585,228.008026 175.582123,227.789444 C172.330383,227.715851 171.106613,228.729752 171.126266,232.006027 C171.219223,247.499283 171.218277,262.993683 171.123993,278.486938 C171.103531,281.852997 172.628860,282.711212 175.705185,282.707947 C226.185165,282.654541 276.665314,282.635559 327.145111,282.742920 C331.115540,282.751373 331.835693,281.048981 331.808655,277.623535 C331.692963,262.963593 331.571411,248.298264 331.873108,233.643570 C331.972412,228.819290 330.059021,227.567627 325.748901,227.669083 C316.757172,227.880707 307.759705,227.870224 298.764435,227.894424 C296.646729,227.900131 294.402618,228.310226 292.038300,226.251953 C294.183716,222.928696 296.330597,219.781647 300.951935,219.765793 C312.280609,219.726944 323.610535,219.842789 334.937866,219.714279 C340.044037,219.656357 339.903412,223.102158 339.910461,226.500488 C339.945129,243.159927 339.930328,259.819458 339.932739,276.973419 z" /> <path d="M255.336761,166.000061 C255.336990,185.935638 255.336990,205.371216 255.336990,224.846283 C258.193390,225.153839 259.035767,223.229340 260.227600,222.039413 C271.542572,210.741974 282.777405,199.364212 294.105927,188.080490 C295.643188,186.549316 297.108887,184.191910 299.989990,186.049805 C303.301239,188.185104 303.440430,190.304733 300.095276,193.674133 C289.415558,204.431229 278.675171,215.128052 267.957825,225.847794 C263.717987,230.088608 259.403229,234.257858 255.265045,238.595612 C252.840134,241.137466 250.643280,241.477036 248.070923,238.896912 C232.782455,223.562378 217.455551,208.266144 202.174652,192.924088 C200.428055,191.170486 199.241348,189.329407 201.660950,186.965012 C204.260773,184.424500 206.272385,185.244522 208.450943,187.448166 C219.809113,198.937256 231.187622,210.406372 242.603714,221.837830 C243.953217,223.189148 245.020645,224.968216 247.658920,225.716812 C247.658920,222.685455 247.658859,219.907364 247.658936,217.129272 C247.659912,180.815659 247.647919,144.502029 247.695953,108.188469 C247.698669,106.132515 246.834030,103.645943 249.028625,102.193962 C250.447067,101.255493 252.290527,101.350479 253.842102,102.104828 C255.717804,103.016769 255.309647,104.934006 255.312256,106.532570 C255.344421,126.188362 255.335114,145.844223 255.336761,166.000061 z" /> <path d="M307.453979,266.900055 C296.127350,270.386902 287.470032,264.158813 288.544281,253.726151 C289.179840,247.553635 292.875122,243.489990 299.115082,242.101669 C304.167023,240.977692 309.910553,243.571259 312.751862,248.259598 C315.790161,253.272873 315.256287,259.619659 311.297607,263.961761 C310.311310,265.043549 308.986267,265.816528 307.453979,266.900055 M306.025757,252.488815 C304.299255,249.649414 301.672577,249.652237 299.039459,250.596161 C296.931641,251.351776 296.275452,253.288086 296.325745,255.452164 C296.383636,257.943604 297.790985,259.477448 299.978973,260.262024 C303.928833,261.678375 306.785309,258.459503 306.025757,252.488815 z" /> </svg>
+   Download App
+              </button>
 
-</header>
-	</div>
+              <button className="flex items-center text-white text-sm hover:text-blue-200 transition-colors">
+                <CircleUserRound className="w-4 h-4 mr-2" />
+                Login
+              </button>
 
+              <div className="flex items-center text-white">
+                <svg
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="1.4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M20 15.5C18.8 15.5 17.5 15.3 16.4 14.9C16.3 14.9 16.2 14.9 16.1 14.9C15.8 14.9 15.6 15 15.4 15.2L13.2 17.4C10.4 15.9 8 13.6 6.6 10.8L8.8 8.6C9.1 8.3 9.2 7.9 9 7.6C8.7 6.5 8.5 5.2 8.5 4C8.5 3.5 8 3 7.5 3H4C3.5 3 3 3.5 3 4C3 13.4 10.6 21 20 21C20.5 21 21 20.5 21 20V16.5C21 16 20.5 15.5 20 15.5Z"
+                  />
+                </svg>
+              </div>
+
+              <button className="flex items-center bg-transparent border border-white text-white px-4 py-2 rounded-full hover:bg-white hover:text-blue-600 transition-colors text-sm">
+                Post Property
+                <span className="bg-[#d2f1ff] text-black text-xs px-2 py-1 rounded ml-2">
+                  FREE
+                </span>
+              </button>
+            </nav>
+          </div>
+        )}
+      </header>
+    </div>
   )
 }
 
