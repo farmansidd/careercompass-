@@ -1,0 +1,12 @@
+ ur task <button
+                key={category.id}
+                onClick={() => scrollToSection(category.id)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                  activeCategory === category.id
+                    ? 'bg-gray-900 text-white shadow-lg'
+                    : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-gray-400 hover:shadow-md'
+                }`} put icon in evey buttom there are 5 button Residential Projects  its svg in @/Frontend/myapp/src/Component/svg/Residentail.svg 
+Commercial Projects its svg @/Frontend/myapp/src/Component/svg/CommercialProject.svg 
+New Launches its @/Frontend/myapp/src/Component/svg/NewLunch.svg 
+Bungalows/Villas > @/Frontend/myapp/src/Component/svg/Banglow.svg 
+Plots/Lands > @/Frontend/myapp/src/Component/svg/Plot.svg

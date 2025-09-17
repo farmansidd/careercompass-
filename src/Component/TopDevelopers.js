@@ -115,7 +115,7 @@ const TopDevelopers = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto px-4 my-[-61px]">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-8 gap-4 pl-3">
         <div>

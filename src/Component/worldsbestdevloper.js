@@ -13,7 +13,7 @@ const brands = [
 
 const BrandTrustShowcase = () => {
   return (
-    <section className="w-full bg-white py-12">
+    <section className="w-full bg-white py-12 mt-16">
       {/* Subtitle */}
       <h3 className="text-center text-sm sm:text-base font-medium text-gray-500 mb-10">
         Trusted by the world&apos;s best

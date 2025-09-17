@@ -10,6 +10,7 @@ import { ReactComponent as ExpandIcon } from './svg/expand.svg';
 import { ReactComponent as FullscreenIcon } from './svg/fullscreen.svg';
 import { ReactComponent as ShareIcon } from './svg/share.svg';
 import { ReactComponent as HeartIcon } from './svg/heart.svg';
+import { ReactComponent as ArrowRightIcon } from './svg/Arrow.svg';
 
 const PropertyCard = ({ property }) => {
   return (
@@ -23,19 +24,21 @@ const PropertyCard = ({ property }) => {
             className="w-full h-full object-cover"
           />
           {/* Featured Badge */}
-          <div className="absolute top-3 left-3 bg-[#EAE9FF] text-[#18126C] px-3 py-1 rounded-[6px] text-xs font-semibold uppercase flex items-center gap-1">
-            <FeaturedIcon className="w-3 h-4" />
+          <div className="absolute top-3 left-3 bg-[#EAE9FF] text-[#18126C] px-3 py-1 rounded-[6px] text-[10px] font-semibold uppercase flex items-center gap-1">
+            <FeaturedIcon className="w-3 h-3" />
             FEATURED
           </div>
           {/* Price Tag */}
-          <div className="absolute bottom-3 left-3 bg-white px-3 py-1.5 rounded-md shadow-md">
-            <span className="text-sm font-bold text-gray-900">₹{property.price}</span>
-          </div>
+         {/* Price Tag */}
+<div className="absolute bottom-3 left-3 bg-white px-2.5 py-1 rounded-md shadow-md">
+  <span className="text-[0.8rem] font-bold text-gray-900">₹{property.price}</span>
+</div>
+
         </div>
 
         {/* Card Body */}
         <div className="p-5">
-          <h3 className="text-lg font-bold text-gray-900 mb-1">{property.title}</h3>
+          <h3 className="text-[14px]  font-[600] text-gray-900 mb-1">{property.title}</h3>
           <p className="text-sm text-gray-500 mb-4">{property.location}</p>
 
           {/* Property Features */}
@@ -60,15 +63,18 @@ const PropertyCard = ({ property }) => {
               <span className="text-xs text-gray-500 font-medium">For Sell</span>
             </div>
             <div className="flex items-center gap-2">
-              <button className="w-8 h-8 border border-gray-200 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <FullscreenIcon className="w-4 h-4" />
-              </button>
-              <button className="w-8 h-8 border border-gray-200 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <ShareIcon className="w-4 h-4" />
-              </button>
-              <button className="w-8 h-8 border border-gray-200 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <HeartIcon className="w-4 h-4" />
-              </button>
+           <button className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
+  <FullscreenIcon className="w-4 h-4" />
+</button>
+
+<button className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
+  <ShareIcon className="w-4 h-4" />
+</button>
+
+<button className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
+  <HeartIcon className="w-4 h-4" />
+</button>
+
             </div>
           </div>
         </div>
@@ -185,23 +191,24 @@ const RealEstateCarousel = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="max-w-7xl mx-auto px-4 pb-10">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-8 gap-4 pl-3">
         <div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">New Launch</h2>
-          <p className="text-gray-600">Aliquam lacinia diam quis lacus euismod</p>
+<h2 className="text-2xl font-[750] text-gray-900 mb-2">New Launch</h2>
+          <p className="text-black-600 text-[13px]">Aliquam lacinia diam quis lacus euismod</p>
         </div>
         <a 
           href="/all-properties" 
           className="flex items-center gap-2 text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors"
         >
           See All Properties
-          <span className="text-lg">↗</span>
+<span className="text-lg no-underline" style={{ fontFamily: "Arial, sans-serif" }}><ArrowRightIcon width={15} />  </span>
         </a>
       </div>
 
-      {/* Carousel Container */}
+      {/* Caro
+usel Container */}
       <div className="relative">
         <div className="overflow-hidden">
           <div 

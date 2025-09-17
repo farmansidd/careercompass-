@@ -1,65 +1,81 @@
 import React, { useState, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Home, Bath, Maximize, Share, Heart, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import ResidentailIcon from './svg/Residentail.svg';
+import CommercialProjectIcon from './svg/CommercialProject.svg';
+import NewLunchIcon from './svg/NewLunch.svg';
+import BanglowIcon from './svg/Banglow.svg';
+import PlotIcon from './svg/Plot.svg';
+import { ReactComponent as BedIcon } from './svg/bed.svg';
+import { ReactComponent as FeaturedIcon } from './svg/featured.svg';
+import { ReactComponent as BathIcon } from './svg/bath.svg';
+import { ReactComponent as ExpandIcon } from './svg/expand.svg';
+import { ReactComponent as FullscreenIcon } from './svg/fullscreen.svg';
+import { ReactComponent as ShareIcon } from './svg/share.svg';
+import { ReactComponent as HeartIcon } from './svg/heart.svg';
 
 const PropertyCard = ({ property }) => {
   return (
-    <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-2 mb-4">
+    <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-2 pb-4">
       <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
         {/* Card Image */}
         <div className="relative h-48 overflow-hidden">
-          <img 
-            src={property.image} 
+          <img
+            src={property.image}
             alt={property.title}
             className="w-full h-full object-cover"
           />
           {/* Featured Badge */}
-          <div className="absolute top-3 left-3 bg-purple-100 text-purple-800 px-3 py-1 rounded-md text-xs font-semibold uppercase flex items-center gap-1">
-            <Star className="w-3 h-3 fill-current" />
+          <div className="absolute top-3 left-3 bg-[#EAE9FF] text-[#18126C] px-3 py-1 rounded-[6px] text-[10px] font-semibold uppercase flex items-center gap-1">
+            <FeaturedIcon className="w-3 h-3" />
             FEATURED
           </div>
           {/* Price Tag */}
-          <div className="absolute bottom-3 left-3 bg-white px-3 py-1.5 rounded-md shadow-md">
-            <span className="text-sm font-bold text-gray-900">₹{property.price}</span>
-          </div>
+         {/* Price Tag */}
+        <div className="absolute bottom-3 left-3 bg-white px-2.5 py-1 rounded-md shadow-md">
+        <span className="text-[0.8rem] font-bold text-gray-900">₹{property.price}</span>
         </div>
 
-        {/* Card Body - increased padding by 2px (from p-5 to px-5 py-7) */}
-        <div className="px-7 py-7">
-          <h3 className="text-lg font-bold text-gray-900 mb-1">{property.title}</h3>
+        </div>
+
+        {/* Card Body */}
+        <div className="p-5">
+          <h3 className="text-[14px]  font-[600] text-gray-900 mb-1">{property.title}</h3>
           <p className="text-sm text-gray-500 mb-4">{property.location}</p>
 
           {/* Property Features */}
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <Home className="w-4 h-4" />
-              <span>{property.beds} bed</span>
+              <BedIcon className="w-4 h-4" />
+              <span>{property.beds} Bed</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <Bath className="w-4 h-4" />
-              <span>{property.baths} bath</span>
+              <BathIcon className="w-4 h-4" />
+              <span>{property.baths} Bath</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <Maximize className="w-4 h-4" />
+              <ExpandIcon className="w-4 h-4" />
               <span>{property.sqft} sqft</span>
             </div>
           </div>
 
-          {/* Divider Line */}
-          <div className="border-t border-gray-200 mb-4"></div>
-
           {/* Card Footer */}
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-700 font-medium">For Sell</span>
-            <div className="flex items-center gap-3">
-              <button className="flex items-center justify-center hover:bg-gray-50 transition-colors p-1 rounded">
-                <Maximize className="w-4 h-4" />
-              </button>
-              <button className="flex items-center justify-center hover:bg-gray-50 transition-colors p-1 rounded">
-                <Share className="w-4 h-4" />
-              </button>
-              <button className="flex items-center justify-center hover:bg-gray-50 transition-colors p-1 rounded">
-                <Heart className="w-4 h-4" />
-              </button>
+            <div>
+              <span className="text-xs text-gray-500 font-medium">For Sell</span>
+            </div>
+            <div className="flex items-center gap-2">
+           <button className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
+            <FullscreenIcon className="w-4 h-4" />
+            </button>
+
+            <button className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
+            <ShareIcon className="w-4 h-4" />
+            </button>
+
+            <button className="w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
+            <HeartIcon className="w-4 h-4" />
+            </button>
+
             </div>
           </div>
         </div>
@@ -83,7 +99,7 @@ const PropertyCarousel = ({ properties, sectionId }) => {
 
   const getTransform = () => {
     if (typeof window === 'undefined') return 'translateX(0%)';
-    
+
     if (window.innerWidth >= 1280) {
       return `translateX(-${currentIndex * 25}%)`;
     } else if (window.innerWidth >= 1024) {
@@ -98,7 +114,7 @@ const PropertyCarousel = ({ properties, sectionId }) => {
   return (
     <div className="relative">
       <div className="overflow-hidden">
-        <div 
+        <div
           ref={carouselRef}
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: getTransform() }}
@@ -133,11 +149,11 @@ const PropertyExplorer = () => {
   const [activeCategory, setActiveCategory] = useState('residential');
 
   const categories = [
-    { id: 'residential', name: 'Residential Projects' },
-    { id: 'commercial', name: 'Commercial Projects' },
-    { id: 'new-launches', name: 'New Launches' },
-    { id: 'bungalows', name: 'Bungalows/Villas' },
-    { id: 'plots', name: 'Plots/Lands' }
+    { id: 'residential', name: 'Residential Projects', icon: ResidentailIcon },
+    { id: 'commercial', name: 'Commercial Projects', icon: CommercialProjectIcon },
+    { id: 'new-launches', name: 'New Launches', icon: NewLunchIcon },
+    { id: 'bungalows', name: 'Bungalows/Villas', icon: BanglowIcon },
+    { id: 'plots', name: 'Plots/Lands', icon: PlotIcon }
   ];
 
   const scrollToSection = (categoryId) => {
@@ -245,44 +261,46 @@ const PropertyExplorer = () => {
       {/* Header Section - removed py-16, now no top/bottom spacing */}
       <div className="bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Explore Property Types</h1>
-          <p className="text-lg text-gray-600 mb-12">Choose from various property categories to find your ideal home</p>
-          
+          <h1 className="text-2xl font-[750] text-gray-900 mb-4">Explore Property Types</h1>
+          <p className="text-sm text-black-800 mb-12">Choose from various property categories to find your ideal home</p>
+
           {/* Category Selector Pills */}
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => scrollToSection(category.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
-                  activeCategory === category.id
-                    ? 'bg-gray-900 text-white shadow-lg'
-                    : 'bg-white border-2 border-gray-200 text-gray-700 hover:border-gray-400 hover:shadow-md'
-                }`}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
+        <div className="flex flex-wrap justify-center gap-4">
+  {categories.map((category) => (
+    <button
+      key={category.id}
+      onClick={() => scrollToSection(category.id)}
+      className={`px-6 py-3 rounded-full font-semibold text-sm transition-all duration-200 flex items-center gap-2 ${
+        activeCategory === category.id
+          ? 'bg-gray-900 text-white shadow-lg'
+          : 'bg-white border-2 border-gray-200 text-gray-800 hover:border-gray-400 hover:shadow-md'
+      }`}
+    >
+      <img src={category.icon} alt={category.name} className="w-5 h-5" />
+      {category.name}
+    </button>
+  ))}
+</div>
+
         </div>
       </div>
 
       {/* Property Sections - removed py-12, now no top/bottom spacing */}
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 py-[53px]">
         {Object.entries(propertyTypes).map(([key, section]) => (
           <div key={key} id={key} className="mb-20">
             {/* Section Header */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-8 gap-4 pl-3">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">{section.title}</h2>
-                <p className="text-gray-600">{section.subtitle}</p>
+                <h2 className="text-2xl font-[750] text-gray-900 mb-2">{section.title}</h2>
+<p className="text-gray-600 text-sm ">{section.subtitle}</p>
               </div>
-              <a 
-                href="/all-properties" 
-                className="flex items-center gap-2 text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors"
+              <a
+                href="/all-properties"
+                className="flex items-center gap-2 text-gray-700 hover:text-gray-900 text-xs font-medium transition-colors"
               >
                 See All Properties
-                <span className="text-lg">↗</span>
+                <span className="text-base">↗</span>
               </a>
             </div>
 
