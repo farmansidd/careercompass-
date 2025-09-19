@@ -15,14 +15,14 @@ import FooterIMF from './img/logo-devloper/FooterIMG.png';
 const Footer = () => {
   return (
     <>
-     <div className="bg-[#f8f8f8] py-6">
-      <div className="container mx-auto flex flex-wrap gap-4 px-[190px]">
+     <div className="bg-[#f8f8f8] py-6 ]">
+      <div className="container mx-auto flex flex-wrap gap-0 px-16">
         {Array(4).fill(null).map((_, colIndex) => (
-          <div key={colIndex} className="flex-1 min-w-[20px]">
-            <ul className="space-y-1 text-xs text-black leading-tight font-medium">
+          <div key={colIndex} className="flex-1 min-w-[24px]">
+            <ul className="space-y-[0.25rem] text-sm text-black pl-10 leading-tight ">
               {links.map((link, index) => (
                 <li key={index}>
-                  <a href="/properties" className="hover:underline hover:text-blue-600 transition-colors duration-200">
+                  <a href="/properties" className="hover:underline hover:text-blue-600 transition-colors duration-200 whitespace-nowrap">
                     {link}
                   </a>
                 </li>
